@@ -1,10 +1,37 @@
-<form action="pembayaran.php" method="POST">
-    Nama = <input type="text" name="nama_608"> <br>
-    Nomor Kartu = <input type="text" name="nomor_kartu_608"> <br>
-    Alamat = <input type="text" name="alamat_penagihan_608"> <br>
-    Metode Pembayaran (Cash/Debit) = <input type="text" name="metode_pembayaran_608"> <br>
-    Kode Transaksi = <input type="text" name="kode_transaksi_608"> <br>
-    <input type="submit" value="Bayar">
+<form action="pembayaran.php" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_608">
+            Nama
+        </label>
+        <input type="text" name="nama_608" id="nama_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Nama">
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nomor_kartu_608">
+            Nomor Kartu
+        </label>
+        <input type="text" name="nomor_kartu_608" id="nomor_kartu_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Nomor Kartu">
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="alamat_penagihan_608">
+            Alamat Penagihan
+        </label>
+        <input type="text" name="alamat_penagihan_608" id="alamat_penagihan_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Alamat">
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="metode_pembayaran_608">
+            Metode Pembayaran (Cash/Debit)
+        </label>
+        <input type="text" name="metode_pembayaran_608" id="metode_pembayaran_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Metode Pembayaran">
+    </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="kode_transaksi_608">
+            Kode Transaksi
+        </label>
+        <input type="text" name="kode_transaksi_608" id="kode_transaksi_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Kode Transaksi">
+    </div>
+    <div class="flex items-center justify-between">
+        <input type="submit" value="Bayar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+    </div>
 </form>
 
 <?php
