@@ -1,44 +1,44 @@
 <form action="pembayaran.php" method="POST">
     Nama = <input type="text" name="nama_608"> <br>
-    Telp = <input type="text" name="telp_608"> <br>
-    Alamat = <input type="text" name="alamat_608"> <br>
-    Tambahan = <input type="text" name="tambahan_608"> <br>
-    Kode = <input type="text" name="kode_608"> <br>
-    <input type="submit" value="Simpan">
+    Nomor Kartu = <input type="text" name="nomor_kartu_608"> <br>
+    Alamat = <input type="text" name="alamat_penagihan_608"> <br>
+    Metode Pembayaran (Cash/Debit) = <input type="text" name="metode_pembayaran_608"> <br>
+    Kode Transaksi = <input type="text" name="kode_transaksi_608"> <br>
+    <input type="submit" value="Bayar">
 </form>
 
 <?php
 
 class Pembayaran608 {
-    var $nama_pembeli608;
-    var $telp608;
-    var $alamat608;
-    var $tambahan608;
-    var $kode608;
+    var $nama_608;
+    var $nomor_kartu_608;
+    var $alamat_penagihan_608;
+    var $metode_pembayaran_608;
+    var $kode_transaksi_608;
 
-    public function __construct($nama_pembeli_txt, $telp, $alamat, $tambahan, $kode) {
-        $this->nama_pembeli608 = $nama_pembeli_txt;
-        $this->telp608 = $telp;
-        $this->alamat608 = $alamat;
-        $this->tambahan608 = $tambahan;
-        $this->kode608 = $kode;
+    public function __construct($nama, $kartu, $alamat, $metode, $kode) {
+        $this->nama_608 = $nama;
+        $this->nomor_kartu_608 = $kartu;
+        $this->alamat_penagihan_608 = $alamat;
+        $this->metode_pembayaran_608 = $metode;
+        $this->kode_transaksi_608 = $kode;
     }
 
     public function tampilkandata() {
-        echo "Nama Pembeli  : " . $this->nama_pembeli608 . "<br>";
-        echo "Telepon       : " . $this->telp608 . "<br>";
-        echo "Alamat        : " . $this->alamat608 . "<br>";
-        echo "Tambahan      : " . $this->tambahan608 . "<br>";
-        echo "Kode          : " . $this->kode608 . "<br>";
+        echo "Nama Pembayar      : " . $this->nama_608 . "<br>";
+        echo "Nomor Kartu        : " . $this->nomor_kartu_608 . "<br>";
+        echo "Alamat Penagihan   : " . $this->alamat_penagihan_608 . "<br>";
+        echo "Metode Pembayaran  : " . $this->metode_pembayaran_608 . "<br>";
+        echo "Kode Transaksi     : " . $this->kode_transaksi_608 . "<br>";
     }
 
     public function getArrayData() {
         return [
-            'nama'     => $this->nama_pembeli608,
-            'telp'     => $this->telp608,
-            'alamat'   => $this->alamat608,
-            'tambahan' => $this->tambahan608,
-            'kode'     => $this->kode608
+            'nama_pembayar'      => $this->nama_608,
+            'nomor_kartu'        => $this->nomor_kartu_608,
+            'alamat_penagihan'   => $this->alamat_penagihan_608,
+            'metode_pembayaran'  => $this->metode_pembayaran_608,
+            'kode_transaksi'     => $this->kode_transaksi_608
         ];
     }
 }
@@ -67,14 +67,14 @@ class PembayaranOnline608 extends Pembayaran608 {
 }
 
 if ($_POST) {
-    $nama = $_POST["nama_608"];
-    $telp = $_POST["telp_608"];
-    $alamat = $_POST["alamat_608"];
-    $tambahan = $_POST["tambahan_608"];
-    $kode = $_POST["kode_608"];
+    $nama_608 = $_POST["nama_608"];
+    $kartu_608 = $_POST["nomor_kartu_608"];
+    $alamat_608 = $_POST["alamat_penagihan_608"];
+    $metode_608 = $_POST["metode_pembayaran_608"];
+    $kode_608 = $_POST["kode_transaksi_608"];
 
-    $pembayaran_1 = new PembayaranOnline608($nama, $telp, $alamat, $tambahan, $kode);
-    $pembayaran_1->prosesPembayaran();
+    $pembayaran_608 = new PembayaranOnline608($nama_608, $kartu_608, $alamat_608, $metode_608, $kode_608);
+    $pembayaran_608->prosesPembayaran();
 }
-
 ?>
+
