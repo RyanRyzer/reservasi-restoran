@@ -1,4 +1,8 @@
-<form action="pembayaran.php" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<form action="dashboard.php?page=pembayaran" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_608">
             Nama
@@ -18,10 +22,14 @@
         <input type="text" name="alamat_penagihan_608" id="alamat_penagihan_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Alamat">
     </div>
     <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="metode_pembayaran_608">
-            Metode Pembayaran (Cash/Debit)
-        </label>
-        <input type="text" name="metode_pembayaran_608" id="metode_pembayaran_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Metode Pembayaran">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="metode_pembayaran_608">
+        Metode Pembayaran
+    </label>
+    <select name="metode_pembayaran_608" id="metode_pembayaran_608" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="">-- Pilih Metode Pembayaran --</option>
+        <option value="Cash">Cash</option>
+        <option value="Debit">Debit</option>
+    </select>
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="kode_transaksi_608">
@@ -51,13 +59,17 @@ class Pembayaran608 {
         $this->kode_transaksi_608 = $kode;
     }
 
-    public function tampilkandata() {
-        echo "Nama Pembayar      : " . $this->nama_608 . "<br>";
-        echo "Nomor Kartu        : " . $this->nomor_kartu_608 . "<br>";
-        echo "Alamat Penagihan   : " . $this->alamat_penagihan_608 . "<br>";
-        echo "Metode Pembayaran  : " . $this->metode_pembayaran_608 . "<br>";
-        echo "Kode Transaksi     : " . $this->kode_transaksi_608 . "<br>";
-    }
+    public function tampilkandata608() {
+    echo '<div class="max-w-md mx-auto bg-gray-100 shadow-md rounded px-6 py-4 mb-4">';
+    echo "<h2 class='text-lg font-bold mb-4'>Detail Pembayaran</h2>";
+    echo "<p class='mb-2'><strong>Nama Pembayar:</strong> " . $this->nama_608 . "</p>";
+    echo "<p class='mb-2'><strong>Nomor Kartu:</strong> " . $this->nomor_kartu_608 . "</p>";
+    echo "<p class='mb-2'><strong>Alamat Penagihan:</strong> " . $this->alamat_penagihan_608 . "</p>";
+    echo "<p class='mb-2'><strong>Metode Pembayaran:</strong> " . $this->metode_pembayaran_608 . "</p>";
+    echo "<p class='mb-2'><strong>Kode Transaksi:</strong> " . $this->kode_transaksi_608 . "</p>";
+    echo '</div>';
+}
+
 
     public function getArrayData() {
         return [
@@ -73,25 +85,49 @@ class Pembayaran608 {
 class PembayaranOnline608 extends Pembayaran608 {
     protected $data = [];
 
+    protected function tambahDataDummy608() {
+    $dummy = [
+        'nama_pembayar'      => 'Dummy User608',
+        'nomor_kartu'        => '1234-5678-9012-3456',
+        'alamat_penagihan'   => 'Jl. Nagara No. 123, Surabaya',
+        'metode_pembayaran'  => 'Debit',
+        'kode_transaksi'     => 'TRX123456'
+    ];
+    array_push($this->data, $dummy);
+}
+
+public function aksesTambahDataDummy608() {
+    $this->tambahDataDummy608();
+}
+
     protected function arrayPush($listdata) {
         foreach ($listdata as $item) {
             array_push($this->data, $item);
         }
     }
 
-    public function prosesPembayaran() {
+    public function prosesPembayaran608() {
         $this->arrayPush([$this->getArrayData()]);
-        $this->tampilkandata();
+        $this->tampilkandata608();
     }
 
-    public function tampilkanSemuaData() {
-        foreach ($this->data as $item) {
-            foreach ($item as $key => $value) {
-                echo ($key) . ": " . $value . "<br>";
-            }
+    public function tampilkanSemuaData608() {
+    echo '<div class="max-w-md mx-auto bg-white shadow-md rounded px-6 py-4 mb-4">';
+    echo "<h2 class='text-lg font-bold mb-4'>Semua Data Pembayaran</h2>";
+    foreach ($this->data as $item) {
+        foreach ($item as $key => $value) {
+            echo "<p class='mb-2'><strong>" . ucfirst(str_replace('_', ' ', $key)) . ":</strong> " . $value . "</p>";
         }
+        echo "<hr class='my-4'>";
     }
+    echo '</div>';
 }
+}
+
+    $pembayaran_608 = new PembayaranOnline608("", "", "", "", "");
+    $pembayaran_608->aksesTambahDataDummy608();
+    $pembayaran_608->tampilkanSemuaData608();
+
 
 if ($_POST) {
     $nama_608 = $_POST["nama_608"];
@@ -101,7 +137,8 @@ if ($_POST) {
     $kode_608 = $_POST["kode_transaksi_608"];
 
     $pembayaran_608 = new PembayaranOnline608($nama_608, $kartu_608, $alamat_608, $metode_608, $kode_608);
-    $pembayaran_608->prosesPembayaran();
+    $pembayaran_608->prosesPembayaran608();
+    $pembayaran_608->tampilkanSemuaData608();
 }
 ?>
 
