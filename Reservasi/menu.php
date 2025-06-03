@@ -1,8 +1,14 @@
+<?php
+if (!isset($_SESSION['nim'])) {
+    header('Location: login.php'); // Arahkan ke login jika session tidak ada
+    exit;
+}
+?>
 <head>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<form action="dashboard.php?page=menu" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<form action="" method="POST" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_604">Nama</label>
         <input type="text" name="nama_604" id="nama_604" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan Nama">
